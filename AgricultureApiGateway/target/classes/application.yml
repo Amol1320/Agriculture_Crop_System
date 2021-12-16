@@ -1,0 +1,27 @@
+server:
+  port: 8099
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: orderdetails
+          uri: http://localhost:8086/
+          predicates:
+            - Path=/order/**
+
+        - id: farmer-service
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/farmer/** 
+
+        - id: dealer-service
+          uri: http://localhost:8083/
+          predicates:
+            - Path=/dealer/** 
+
+        - id: crop-service
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/crop/**      
